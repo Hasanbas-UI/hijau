@@ -1,13 +1,11 @@
 name: Commit cheat
 
 on:
-
   push:
     branches:
       - main
-      
   schedule:
-  - cron: "0 * * * *"
+    - cron: "*/5 * * * *"  # This runs every 5 minutes
 
 jobs:
   auto_commit:
@@ -17,8 +15,8 @@ jobs:
         run: git config --global --add safe.directory /github/workspace
       - uses: actions/checkout@v3     
         with:
-         persist-credentials: false
-         fetch-depth: 1
+          persist-credentials: false
+          fetch-depth: 1
 
       - name: Modify last update
         run: |
